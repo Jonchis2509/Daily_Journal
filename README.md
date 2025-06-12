@@ -18,7 +18,7 @@ This project is part of my **Python 50-Day Learning Challenge**, showcasing prac
 
 ## 🛠️ Technologies Used
 
-- **Python 3**
+- Python 3
 - `datetime` module
 - `os` module
 - Exception handling (`try`, `except`, `finally`)
@@ -28,22 +28,23 @@ This project is part of my **Python 50-Day Learning Challenge**, showcasing prac
 
 ## 📂 File Structure
 
+---
 
+## 🧪 Sample Code
 
-
+```python
 import os
 from datetime import datetime
 
-#Function to display the principal menu and its options.
+# Function to display the principal menu and its options
 def menu():
     print("\n📘 DAILY JOURNAL MENU")
     print("1. Write new journal entry.")
     print("2. Read the past entries.")
     print("3. Exit.")
-    #Requires user to choose an option from the menu
     return input("Choose an option: ")
 
-#Funtion that write the entry in the file
+# Function to write the entry in the file
 def write_entry():
     today = datetime.now().strftime("%d-%m-%Y")
     filename = f"entries/entries of {today}.txt"
@@ -52,12 +53,11 @@ def write_entry():
     try:
         with open(filename, "a") as file:
             file.write(entry + "\n")
-        print(f"Entry of {today} saved.") #Message to confirm that the entry stored correctly.
-
+        print(f"Entry of {today} saved.")
     except IOError:
-        print("Error writing file.") #Message if the file cannot find.
+        print("Error writing file.")
 
-#Funtion to read the old entries
+# Function to read the old entries
 def read_entry():
     try:
         files = os.listdir("entries")
@@ -68,15 +68,15 @@ def read_entry():
             with open(f"entries/{f}", "r") as file:
                 print(file.read())
     except FileNotFoundError:
-        print ("The entries folder doesn´t exist.") #Error message if the folder doesn´t exist
-    except IOError: 
-        print("Error reading file.")  #Error message if the file cannot read
+        print("The entries folder doesn’t exist.")
+    except IOError:
+        print("Error reading file.")
 
+# Create entries folder if not exists
 if not os.path.exists("entries"):
     os.mkdir("entries")
 
-
-#Loop to work the functions
+# Loop to run the program
 while True:
     choice = menu()
     if choice == "1":
@@ -87,4 +87,4 @@ while True:
         print("Goodbye!")
         break
     else:
-        print("Invalid choise.")
+        print("Invalid choice.")
